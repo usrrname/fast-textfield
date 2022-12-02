@@ -1,9 +1,37 @@
-<div id="app"></div>
-<!-- 
-  <script src="dist/esm/custom-text-field.js" type="module"></script>
-<script src="dist/esm/text-field.js" type="module"></script>
-  <div>
-  <custom-text-field label="Custom Text Field label text"></custom-text-field>
-  <fast-text-field label="Fast Text Field"></fast-text-field>
-  <saf-note type="error" note="I'm an error"></saf-note>
-</div> -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Welcome</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <link href="./style.css">
+  <script src="./dist/cdn/custom-text-field.js" type="module"></script>
+  <script src="./dist/cdn/text-field.js" type="module"></script>
+</head>
+
+<body>
+  <h1>Example</h1>
+  <div id="app">
+    <!-- Fast text field with internal customizations in markup -->
+    <fast-text-field id="fast-text-field" required name="first name of user" aria-label="first name" required> First
+      Name
+      <span>(Required)</span>
+      <p>Enter your first name</p>
+    </fast-text-field>
+    <hr>
+    <!-- custom text field with template customizations -->
+    <custom-text-field id="first-name" label="First Name" name="first name" optionality="(Required)"
+      aria-label="first name of user" helptext="Enter your first name" validationmessage="Error Message" required>
+    </custom-text-field>
+
+  </div>
+</body>
+
+</html>

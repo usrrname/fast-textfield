@@ -7,7 +7,7 @@ export class CustomTextField extends FASTTextField {
    * @remarks
    * unique ID on the input text element
    */
-  public id: string = '';
+  public id: string;
   /**
    * @public
    * @remarks
@@ -25,7 +25,7 @@ export class CustomTextField extends FASTTextField {
   public invalid: ValidityState['valid'] = false;
 
   @attr({ attribute: 'validationmessage' })
-  public validationMessage: string = '';
+  public errorMessage: string;
   /**
    * @public
    * @remarks
@@ -44,6 +44,5 @@ export class CustomTextField extends FASTTextField {
   public optionality?: string;
 
   @attr({ attribute: 'aria-errormessage' })
-  @observable
-  public ariaErrormessage: string = this.validationMessage;
+  @observable public ariaErrormessage: string;
 }

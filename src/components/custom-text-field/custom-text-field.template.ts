@@ -4,7 +4,7 @@ import {
   startSlotTemplate,
   TextFieldOptions,
 } from '@microsoft/fast-foundation';
-import { CustomTextField } from './custom-text-field.js';
+import type { CustomTextField } from './custom-text-field.js';
 
 export function textTemplate(
   options: TextFieldOptions = {}
@@ -13,63 +13,58 @@ export function textTemplate(
 <template>
   ${when(
     (x) => x.label,
-    html`<label
-        part="label"
-        for="${(x) => x.id}"
-        class="${(x) => (x.label ? 'label' : 'label label__hidden')}"
-        value="${(x) => x.label}"
-        id="label-${(x) => x.id}"
-        >${(x) => x.label}
-      </label> ${when((x) => x.optionality, html`${(x) => x.optionality}`)}
-      )}`
+    html`<label part="label" for="${(x) => x.id}" 
+    class="${(x) => (x.label ? 'label' : 'label label__hidden')}"
+    value="${(x) => x.label}" 
+    id="label-${(x) => x.id}">${x => x.label}
+  </label>
+
+  ${when((x) => x.optionality, html`<span class="optionality">${(x) => x.optionality}</span>`)}
+
+  ${when(x => x.helpText, html`<p id="helper-${x => x.id}">${x => x.helpText}</p>`)}
+  `
   )}
 
 
-		<div part="root" class="root">
-			<div part="control" class="control">
+  <div part="root" class="root">
+    <div part="control" class="control">
       ${startSlotTemplate(options)}
-			<input
-        id="${(x) => x.id}"
+      <input 
+        id="${(x) => x.id}" 
         name="${(x) => x.name}"
-        class="${(x) => (x.invalid ? 'control invalid' : 'control valid')}"
+        class="${(x) => (x.invalid ? 'control invalid' : 'control valid')}" 
         :start="${(x) => x.start}"
-        :end="${(x) => x.end}"
-        :invalid="${(x) => x.invalid}"
-        ?inputmode="${(x) => x.inputMode}"
-        :placeholder="${(x) => x.placeholder ?? ''}"
+        :end="${(x) => x.end}" 
+        :placeholder="${(x) => x.placeholder ?? ''}" 
         aria-atomic="${(x) => x.ariaAtomic}"
-        aria-busy="${(x) => x.ariaBusy}"
-        aria-controls="${(x) => x.ariaControls}"
+        aria-busy="${(x) => x.ariaBusy}" 
+        aria-controls="${(x) => x.ariaControls}" 
         aria-current="${(x) => x.ariaCurrent}"
-        aria-describedby="${(x) => (x.helpText ? `helper-${x.id}` : '')}"
+        aria-describedby="${(x) => (x.helpText ? `helper-${x.id}` : '')}" 
         aria-invalid="${(x) => x.invalid}"
-        aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}"
+        aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}" 
         aria-label="${(x) => x.ariaLabel}"
-        aria-labelledby="${(x) => (x.label ? `label-${x.id}` : '')}"
+        aria-labelledby="${(x) => (x.label ? `label-${x.id}` : '')}" 
+        aria-describedby="${x => x.helpText ? `helper-${x => x.id}`: ''}"
         aria-live="${(x) => x.ariaLive}"
-        aria-owns="${(x) => x.ariaOwns}"
+        aria-owns="${(x) => x.ariaOwns}" 
         aria-relevant="${(x) => x.ariaRelevant}"
-        aria-roledescription="${(x) => x.ariaRoledescription}"
+        aria-roledescription="${(x) => x.ariaRoledescription}" 
         ?autofocus="${(x) => x.autofocus}"
-        ?disabled="${(x) => x.disabled}"
-        ?readonly="${(x) => x.readOnly}"
+        ?disabled="${(x) => x.disabled}" ?readonly="${(x) => x.readOnly}" 
         ?required="${(x) => x.required}"
-        ?spellcheck="${(x) => x.spellcheck}"
-        list="${(x) => x.list}"
+        ?spellcheck="${(x) => x.spellcheck}" list="${(x) => x.list}" 
         maxlength="${(x) => x.maxlength}"
-        minlength="${(x) => x.minlength}"
-        name="${(x) => x.name}"
-        pattern="${(x) => x.pattern}"
+        minlength="${(x) => x.minlength}" 
+        name="${(x) => x.name}" 
+        pattern="${(x) => x.pattern}" 
         size="${(x) => x.size}"
-        tabindex="${(x) => (x.disabled ? null : 0)}"
+        tabindex="${(x) => (x.disabled ? null : 0)}" 
         type="${(x) => x.type}"
-        validationmessage="${(x) => x.validationMessage}"
-        :value="${(x) => x.value}"
-        ${ref('control')}
-        />
-        ${endSlotTemplate(options)}
-			</div>
-		</div>
-
-	</template> `;
+        :value="${(x) => x.value}" 
+        ${ref('control')} />
+      ${endSlotTemplate(options)}
+    </div>
+  </div>
+</template>`;
 }
