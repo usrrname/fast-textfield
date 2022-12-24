@@ -45,7 +45,8 @@
     "node": ">= 16.13.0"
   },
   "scripts": {
-    "start": "webpack serve --open --config webpack.dev.cjs --history-api-fallback --progress",
+    "start": "npx http-server",
+    "dev": "webpack serve --open --config webpack.dev.cjs --history-api-fallback --progress",
     "build": "webpack --config webpack.prod.cjs"
   }
 }
